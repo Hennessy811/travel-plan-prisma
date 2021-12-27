@@ -15,10 +15,16 @@
   },
   "dependencies": {
     "@prisma/client": "3.7.0",
+    "@trpc/client": "^9.16.0",
+    "@trpc/next": "^9.16.0",
+    "@trpc/react": "^9.16.0",
+    "@trpc/server": "^9.16.0",
     "next": "12.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "sass": "^1.42.1"
+    "react-query": "^3.34.6",
+    "sass": "^1.42.1",
+    "zod": "^3.11.6"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.0",
