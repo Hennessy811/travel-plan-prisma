@@ -8,6 +8,8 @@ const usersRouter = trpc
   .query("GetAll", {
     input: () => {},
     resolve: async (req) => {
+      console.log("req ", req.ctx)
+
       return await prisma.user.findMany()
     },
   })
