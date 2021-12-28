@@ -138,9 +138,7 @@ function Home() {
   })
 
   const handleCreateTrip = (data: any) => {
-    createTripMutation.mutateAsync(data).catch((e) => {
-      console.log(e)
-    })
+    createTripMutation.mutateAsync(data).catch((e) => {})
   }
 
   return (
