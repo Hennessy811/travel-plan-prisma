@@ -19,8 +19,6 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_SECRET,
     }),
     // EmailProvider({
-    //   // The email provider requires a `from` address, which can be
-    //   // configured here.
     //   from: "mitia2022@gmail.com",
     // }),
 
