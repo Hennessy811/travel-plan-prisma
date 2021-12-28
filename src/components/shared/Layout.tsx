@@ -13,7 +13,9 @@ const Layout = ({ children, protectedRoute }: Props) => {
     <div className="max-w-4xl m-auto">
       <Header />
 
-      <main className="px-4 mt-12">{children}</main>
+      <main className="px-4 pt-4 pb-8 mt-12 bg-white rounded-lg shadow">
+        {children}
+      </main>
     </div>
   )
   return protectedRoute ? <Auth>{content}</Auth> : <>{content}</>

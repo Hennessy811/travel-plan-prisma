@@ -13,11 +13,11 @@ const Header = () => {
   const loading = status === "loading"
 
   return (
-    <div className="flex items-center justify-between px-4 py-3 mt-2 border border-gray-200 shadow-md rounded-xl">
+    <div className="flex items-center justify-between px-4 py-3 mt-2 border border-gray-200 shadow-md bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl">
       <div>
         <Link href="/">
           <a>
-            <span className="text-xl font-bold">Demo App</span>
+            <span className="text-xl font-bold">Travel Plans</span>
           </a>
         </Link>
       </div>
