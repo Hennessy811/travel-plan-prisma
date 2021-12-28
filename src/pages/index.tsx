@@ -136,7 +136,8 @@ function Home() {
 
   const handleCreateTrip = (data: FormInputs) => {
     createTripMutation
-      .mutateAsync({ ...data })
+      // @ts-ignore
+      .mutateAsync(data)
       .then(() => refetch())
       .catch((e) => {
         console.log(e)
