@@ -23,9 +23,9 @@ export default withTRPC<AppRouter>({
      * @link https://trpc.io/docs/ssr
      */
     const url =
-      process.env.NODE_ENV === "production"
-        ? `${process.env.NEXTAUTH_URL}/api/trpc`
-        : "http://localhost:3000/api/trpc"
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/api/trpc"
+        : `https://travel-plan-prisma.vercel.app/api/trpc`
 
     return {
       url,
