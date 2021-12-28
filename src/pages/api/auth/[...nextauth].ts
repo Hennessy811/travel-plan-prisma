@@ -8,6 +8,7 @@ import { prisma } from "@backend/utils"
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXT_AUTH_SECRET,
   // Configure one or more authentication providers
   providers: [
     // GithubProvider({
