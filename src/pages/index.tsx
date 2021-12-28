@@ -126,22 +126,21 @@ const CreateTripForm = ({
 }
 
 function Home() {
+  const utils = trpc.useContext()
   const {
     data: trips,
     isLoading,
     isError,
     refetch,
   } = trpc.useQuery(["trips.all"])
-  const createTripMutation = trpc.useMutation("trips.create")
+  const createTripMutation = trpc.useMutation("trips.create", {
+    onSuccess: () => utils.invalidateQueries(["trips.all"]),
+  })
 
-  const handleCreateTrip = (data: FormInputs) => {
-    createTripMutation
-      // @ts-ignore
-      .mutateAsync(data)
-      .then(() => refetch())
-      .catch((e) => {
-        console.log(e)
-      })
+  const handleCreateTrip = (data: any) => {
+    createTripMutation.mutateAsync(data).catch((e) => {
+      console.log(e)
+    })
   }
 
   return (
