@@ -38,7 +38,7 @@ const schema = yup
       .date()
       .required()
       .test("endDate", "End date must be after start date", function (value) {
-        return value > this.parent.startDate
+        return value ? value > this.parent.startDate : true
       }),
     comment: yup.string(),
   })
@@ -127,18 +127,13 @@ const CreateTripForm = ({
 
 function Home() {
   const utils = trpc.useContext()
-  const {
-    data: trips,
-    isLoading,
-    isError,
-    refetch,
-  } = trpc.useQuery(["trips.all"])
+  const { data: trips, isLoading, isError } = trpc.useQuery(["trips.all"])
   const createTripMutation = trpc.useMutation("trips.create", {
     onSuccess: () => utils.invalidateQueries(["trips.all"]),
   })
 
-  const handleCreateTrip = (data: any) => {
-    createTripMutation.mutateAsync(data).catch((e) => {})
+  const handleCreateTrip = (data: FormInputs) => {
+    createTripMutation.mutateAsync(data)
   }
 
   return (

@@ -1,14 +1,20 @@
+import { TRPCError } from "@trpc/server"
 import { z } from "zod"
 
 import createRouter from "@backend/createRouter"
 
 const tripsRouter = createRouter()
+  .middleware(async ({ ctx, next }) => {
+    const { user } = ctx
+    if (!user) throw new TRPCError({ code: "UNAUTHORIZED" })
+    else return next()
+  })
   .query("all", {
     resolve: async ({ ctx }) => {
       const { prisma, user } = ctx
       const trips = await prisma.trip.findMany({
         where: {
-          user: { email: user.email },
+          user: { email: user!.email },
         },
       })
       return trips
@@ -25,7 +31,7 @@ const tripsRouter = createRouter()
       const { prisma, user } = ctx
       const trip = await prisma.trip.create({
         data: {
-          user: { connect: { email: user.email } },
+          user: { connect: { email: user!.email! } },
           destination: input.destination,
           startDate: input.startDate,
           endDate: input.endDate,

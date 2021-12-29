@@ -38,7 +38,9 @@ const Header = () => {
                     className="rounded-full"
                     height={40}
                     width={40}
-                    src={getUserAvatar(data.user.name || data.user.email)}
+                    src={getUserAvatar(
+                      data?.user?.name || data?.user?.email || ""
+                    )}
                     alt="User avatar"
                   />
                 </div>

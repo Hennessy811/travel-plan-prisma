@@ -2,13 +2,21 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import NextAuth from "next-auth"
 // import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
-// import CredentialsProvider from "next-auth/providers/credentials"
 
-import { prisma } from "@backend/utils"
+import { prisma } from "@backend/context"
+// import CredentialsProvider from "next-auth/providers/credentials"
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXT_AUTH_SECRET,
+  session: {
+    strategy: "jwt",
+    maxAge: 60 * 60 * 24 * 30,
+  },
+  jwt: {
+    secret: process.env.NEXT_AUTH_SECRET,
+    maxAge: 60 * 60 * 24 * 30,
+  },
   // Configure one or more authentication providers
   providers: [
     // GithubProvider({
@@ -16,8 +24,8 @@ export default NextAuth({
     //   clientSecret: process.env.GITHUB_SECRET,
     // }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: process.env.GOOGLE_ID || "",
+      clientSecret: process.env.GOOGLE_SECRET || "",
     }),
 
     // EmailProvider({

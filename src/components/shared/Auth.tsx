@@ -3,7 +3,11 @@ import React from "react"
 import { isPast } from "date-fns"
 import { signIn, signOut, useSession } from "next-auth/react"
 
-function Auth({ children }) {
+interface Props {
+  children: JSX.Element
+}
+
+function Auth({ children }: Props) {
   const { data: session, status } = useSession()
   const isUser = !!session?.user
 
